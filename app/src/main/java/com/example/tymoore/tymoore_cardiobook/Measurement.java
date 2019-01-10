@@ -1,17 +1,14 @@
 package com.example.tymoore.tymoore_cardiobook;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class Measurement {
-    private Date dateMeasured;
-    private Time timeMeasured;
+    private String dateMeasured;
+    private String timeMeasured;
     private Integer systolicPressure;
     private Integer diastolicPressure;
     private Integer heartRate;
     private String comment;
 
-    public Measurement(Date dateMeasured, Time timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
+    public Measurement(String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
         this.dateMeasured = dateMeasured;
         this.timeMeasured = timeMeasured;
         this.systolicPressure = systolicPressure;
@@ -20,19 +17,19 @@ public class Measurement {
         this.comment = comment;
     }
 
-    public Date getDateMeasured() {
+    public String getDateMeasured() {
         return dateMeasured;
     }
 
-    public void setDateMeasured(Date dateMeasured) {
+    public void setDateMeasured(String dateMeasured) {
         this.dateMeasured = dateMeasured;
     }
 
-    public Time getTimeMeasured() {
+    public String getTimeMeasured() {
         return timeMeasured;
     }
 
-    public void setTimeMeasured(Time timeMeasured) {
+    public void setTimeMeasured(String timeMeasured) {
         this.timeMeasured = timeMeasured;
     }
 
