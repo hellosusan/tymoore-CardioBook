@@ -9,6 +9,7 @@ public class Measurement {
     private Integer heartRate;
     private String comment;
 
+
     public Measurement(Integer measurementID, String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
         this.measurementID = measurementID;
         this.dateMeasured = dateMeasured;
@@ -25,5 +26,25 @@ public class Measurement {
                 ", TimeMeasured: " + timeMeasured + ", SystolicPressure: " + systolicPressure +
                 ", DiastolicPressure: " + diastolicPressure + ", HeartRate: " + heartRate +
                 ", Comment: " + comment;
+    }
+
+    public String getDateMeasured() {
+        return dateMeasured;
+    }
+
+    public Integer getSystolicPressure() {
+        return systolicPressure;
+    }
+
+    public Integer getDiastolicPressure() {
+        return diastolicPressure;
+    }
+
+    public Integer getHeartRate() {
+        return heartRate;
+    }
+
+    public Integer getMeasurementID() {
+        return measurementID;
     }
 }

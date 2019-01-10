@@ -50,7 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MeasurementsTableName);
         onCreate(sqLiteDatabase);
     }
-    
+
     public void MeasurementsInsertRow(String date, String time, int systolic, int diastolic, int heartRate, String comments){
         database.execSQL(
                 "INSERT INTO " + MeasurementsTableName + " (" +
