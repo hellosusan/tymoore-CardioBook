@@ -1,6 +1,7 @@
 package com.example.tymoore.tymoore_cardiobook;
 
 public class Measurement {
+    private Integer measurementID;
     private String dateMeasured;
     private String timeMeasured;
     private Integer systolicPressure;
@@ -8,7 +9,8 @@ public class Measurement {
     private Integer heartRate;
     private String comment;
 
-    public Measurement(String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
+    public Measurement(Integer measurementID, String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
+        this.measurementID = measurementID;
         this.dateMeasured = dateMeasured;
         this.timeMeasured = timeMeasured;
         this.systolicPressure = systolicPressure;
@@ -17,51 +19,11 @@ public class Measurement {
         this.comment = comment;
     }
 
-    public String getDateMeasured() {
-        return dateMeasured;
-    }
-
-    public void setDateMeasured(String dateMeasured) {
-        this.dateMeasured = dateMeasured;
-    }
-
-    public String getTimeMeasured() {
-        return timeMeasured;
-    }
-
-    public void setTimeMeasured(String timeMeasured) {
-        this.timeMeasured = timeMeasured;
-    }
-
-    public Integer getSystolicPressure() {
-        return systolicPressure;
-    }
-
-    public void setSystolicPressure(Integer systolicPressure) {
-        this.systolicPressure = systolicPressure;
-    }
-
-    public Integer getDiastolicPressure() {
-        return diastolicPressure;
-    }
-
-    public void setDiastolicPressure(Integer diastolicPressure) {
-        this.diastolicPressure = diastolicPressure;
-    }
-
-    public Integer getHeartRate() {
-        return heartRate;
-    }
-
-    public void setHeartRate(Integer heartRate) {
-        this.heartRate = heartRate;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    @Override
+    public String toString() {
+        return "MeasurementID : " + measurementID + ", DateMeasured: " + dateMeasured +
+                ", TimeMeasured: " + timeMeasured + ", SystolicPressure: " + systolicPressure +
+                ", DiastolicPressure: " + diastolicPressure + ", HeartRate: " + heartRate +
+                ", Comment: " + comment;
     }
 }

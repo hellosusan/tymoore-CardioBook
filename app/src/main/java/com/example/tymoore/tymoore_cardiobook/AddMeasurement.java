@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,8 +14,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.regex.Pattern;
 
 public class AddMeasurement extends AppCompatActivity {
 
@@ -83,108 +84,39 @@ public class AddMeasurement extends AppCompatActivity {
     }
 
 
-    private Boolean isDateValid(){
-        String formattedDate = ((Button) findViewById(R.id.select_date_button)).getText().toString();
-        Boolean valid = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}").matcher(formattedDate).matches();
-
-        if (!valid){
-            Toast.makeText(this, "Please enter a valid date",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean isTimeValid(){
-        String formattedTime = ((Button) findViewById(R.id.select_time_button)).getText().toString();
-        Boolean valid = Pattern.compile("[0-9]{2}:[0-9]{2}").matcher(formattedTime).matches();
-
-        if (!valid){
-            Toast.makeText(this, "Please enter a valid time",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean isSystolicValid(){
-        String systolicString = ((EditText) findViewById(R.id.systolic_pressure_input)).getText().toString();
-        Boolean valid = Pattern.compile("[0-9]+").matcher(systolicString).matches();
-
-        if (!valid){
-            Toast.makeText(this, "Please enter a valid Systolic value",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean isDiastolicValid(){
-        String diastolicString = ((EditText) findViewById(R.id.diastolic_pressure_input)).getText().toString();
-        Boolean valid = Pattern.compile("[0-9]+").matcher(diastolicString).matches();
-
-        if (!valid){
-            Toast.makeText(this, "Please enter a valid Diastolic value",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean isHeartRateValid(){
-        String heartRateString = ((EditText) findViewById(R.id.heart_rate_input)).getText().toString();
-        Boolean valid = Pattern.compile("[0-9]+").matcher(heartRateString).matches();
-
-        if (!valid){
-            Toast.makeText(this, "Please enter a valid Heart Rate value",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean isCommentValid(){
-        String commentString = ((EditText) findViewById(R.id.comments_input)).getText().toString();
-        Boolean valid = commentString.length() <= 20;
-
-        if (!valid){
-            Toast.makeText(this, "Please reduce the length of your comment",Toast.LENGTH_SHORT).show();
-        }
-
-        return valid;
-    }
-
-    private Boolean inputIsValid(){
-        return isDateValid() && isTimeValid() && isSystolicValid() && isDiastolicValid()
-                && isHeartRateValid() && isCommentValid();
-    }
-
     private void goBackToMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    private Measurement constructMeasurement(){
-        String formattedDate = ((Button) findViewById(R.id.select_date_button)).getText().toString();
-        String formattedTime = ((Button) findViewById(R.id.select_time_button)).getText().toString();
-        Integer systolicValue = Integer.valueOf(((EditText) findViewById(R.id.systolic_pressure_input)).getText().toString());
-        Integer diastolicValue = Integer.valueOf(((EditText) findViewById(R.id.diastolic_pressure_input)).getText().toString());
-        Integer heartRateValue = Integer.valueOf(((EditText) findViewById(R.id.heart_rate_input)).getText().toString());
-        String commentString = ((EditText) findViewById(R.id.comments_input)).getText().toString();
 
-        Measurement measurement = new Measurement(formattedDate, formattedTime, systolicValue,
-                diastolicValue, heartRateValue, commentString);
-
-        return measurement;
-    }
-
-    private void storeMeasurement(Measurement measurement){
-
+    private void storeMeasurement(String date, String time, String systolic, String diastolic,
+                                  String heartRate, String comment){
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        databaseHandler.MeasurementsInsertRow(date, time, Integer.valueOf(systolic),
+                Integer.valueOf(diastolic), Integer.valueOf(heartRate), comment);
     }
 
     public void submitButtonOnClick(View view){
-        if (inputIsValid()){
-            Measurement measurement = constructMeasurement();
-            storeMeasurement(measurement);
+        String formattedDate = ((Button) findViewById(R.id.select_date_button)).getText().toString();
+        String formattedTime = ((Button) findViewById(R.id.select_time_button)).getText().toString();
+        String systolicString = ((EditText) findViewById(R.id.systolic_pressure_input)).getText().toString();
+        String diastolicString = ((EditText) findViewById(R.id.diastolic_pressure_input)).getText().toString();
+        String heartRateString = ((EditText) findViewById(R.id.heart_rate_input)).getText().toString();
+        String commentString = ((EditText) findViewById(R.id.comments_input)).getText().toString();
 
-            Toast.makeText(this, getString(R.string.submission_text),Toast.LENGTH_SHORT).show();
+        Validifier validifier = new Validifier(this, formattedDate, formattedTime, systolicString,
+                diastolicString, heartRateString, commentString);
+
+        Boolean validInputs = validifier.isValid();
+        Toast.makeText(this, validifier.getDisplayMessage(),Toast.LENGTH_SHORT).show();
+
+        if (validInputs){
+            storeMeasurement(formattedDate, formattedTime, systolicString, diastolicString,
+                    heartRateString, commentString);
             goBackToMainActivity();
         }
+
     }
 
 

@@ -97,7 +97,6 @@
                 android:hint="@string/heart_rate_hint"
                 android:textAlignment="center"
                 android:inputType="numberDecimal"
-                android:background=""
                 />
             <TextView
                 android:layout_width="match_parent"
