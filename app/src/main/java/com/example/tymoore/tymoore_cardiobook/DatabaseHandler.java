@@ -50,14 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MeasurementsTableName);
         onCreate(sqLiteDatabase);
     }
-
-    public void MeasurementsClearTable(){
-        database.execSQL("DELETE FROM " + MeasurementsTableName);
-    }
-    public void MeasurementsDropTable(){
-        database.execSQL("DROP TABLE IF EXISTS " + MeasurementsTableName);
-    }
-
+    
     public void MeasurementsInsertRow(String date, String time, int systolic, int diastolic, int heartRate, String comments){
         database.execSQL(
                 "INSERT INTO " + MeasurementsTableName + " (" +
@@ -103,17 +96,4 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return measurements;
     }
-
-    public int MeasurementsGetLastInsertedRow(){
-        String[] columns = {MeasurementsColumnID};
-        Cursor cursor = database.query(MeasurementsTableName,columns,null,
-                null,null,null,MeasurementsColumnID + " DESC");
-        if (cursor.moveToNext()) {
-            return cursor.getInt(cursor.getColumnIndex(MeasurementsColumnID));
-        }
-        else{
-            return -1;
-        }
-    }
-
 }
