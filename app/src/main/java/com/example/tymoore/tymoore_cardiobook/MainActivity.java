@@ -31,11 +31,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addMeasurementOnClick(View view){
+        goToAddMeasurementActivity();
+    }
+
+    private void goToAddMeasurementActivity(){
         Intent intent = new Intent(this, AddMeasurement.class);
         startActivity(intent);
     }
-
-
-
 
 }

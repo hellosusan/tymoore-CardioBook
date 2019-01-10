@@ -11,7 +11,8 @@
     <string name="diastolic_hint">Enter Diastolic Pressure Here:</string>
     <string name="heart_rate_measured">Heart Rate in Beats Per Minute:</string>
     <string name="heart_rate_hint">Enter Heart Rate Here:</string>
-    <string name="comment_title">Comments (up to 20 characters):</string>
+    <string name="comment_title">Comment (up to 20 characters):</string>
     <string name="comment_hint">Enter Comment Here:</string>
     <string name="submit_text">Submit</string>
+    <string name="submission_text">Measurement Successfully Added!</string>
 </resources>
