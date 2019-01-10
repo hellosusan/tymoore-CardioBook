@@ -1,11 +1,13 @@
 package com.example.tymoore.tymoore_cardiobook;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -20,7 +22,7 @@ public class AddMeasurement extends AppCompatActivity {
     }
 
     public void dateButtonOnClick(View view){
-        Button dateButton = (Button) view;
+        final Button dateButton = (Button) view;
 
         Calendar calendar = Calendar.getInstance();
 
@@ -32,7 +34,7 @@ public class AddMeasurement extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 String formattedDate = getFormattedDate(i, i1, i2);
-                Toast.makeText(AddMeasurement.this, formattedDate, Toast.LENGTH_SHORT).show();
+                dateButton.setText(formattedDate);
             }
         }, year, month, day);
 
@@ -40,8 +42,22 @@ public class AddMeasurement extends AppCompatActivity {
     }
 
     public void timeButtonOnClick(View view){
-        Button timeButton = (Button) view;
+        final Button timeButton = (Button) view;
 
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(AddMeasurement.this, new TimePickerDialog.OnTimeSetListener() {
+
+            @Override
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                String formattedTime = getFormattedTime(i, i1);
+                timeButton.setText(formattedTime);
+            }
+        }, hour, minute, false);
+
+        timePickerDialog.show();
     }
 
     private static String getFormattedDate(int year, int month, int day){
@@ -53,6 +69,14 @@ public class AddMeasurement extends AppCompatActivity {
         String formattedDay = monthDayFormatter.format(day);
 
         return formattedYear + "-" + formattedMonth + "-" + formattedDay;
+    }
+
+    private static String getFormattedTime(int hour, int minute){
+        DecimalFormat timeFormatter = new DecimalFormat("00");
+        String formattedHour = timeFormatter.format(hour);
+        String formattedMinute = timeFormatter.format(minute);
+
+        return formattedHour + ":" + formattedMinute;
     }
 
 }
