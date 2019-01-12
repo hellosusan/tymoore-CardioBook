@@ -6,30 +6,21 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DataStorageManager {
     private Context context;
-    private String fileName;
     private File file;
     private Gson gson;
 
     public DataStorageManager(Context context, String fileName) {
         this.context = context;
-        this.fileName = fileName;
-
         this.file = new File(context.getFilesDir(), fileName);
         this.gson = new Gson();
 
@@ -42,17 +33,38 @@ public class DataStorageManager {
         writeMeasurementsToFile(measurements);
     }
 
+    public void updateMeasurement(Measurement measurement){
+        ArrayList<Measurement> measurements = getMeasurements();
+        for (int i=0; i<measurements.size(); i++){
+            Measurement m = measurements.get(i);
+            if (m.getID().equals(measurement.getID())){
+                measurements.set(i, measurement);
+            }
+        }
+        writeMeasurementsToFile(measurements);
+    }
+
     public void clearMeasurements(){
         writeMeasurementsToFile(new ArrayList<Measurement>());
     }
 
     public void removeMeasurement(Measurement measurement){
         ArrayList<Measurement> measurements = getMeasurements();
-        for(Measurement m: measurements){
+
+        int idToRemove = -1;
+        for (int i=0; i<measurements.size(); i++){
+            Measurement m = measurements.get(i);
             if (m.getID().equals(measurement.getID())){
-                measurements.remove(m);
+                idToRemove = i;
+                break;
             }
         }
+
+        if (idToRemove < 0){
+            Log.d(context.getString(R.string.testGeneralLog), "Error removing");
+        }
+
+        measurements.remove(idToRemove);
         writeMeasurementsToFile(measurements);
     }
 

@@ -1,19 +1,20 @@
 package com.example.tymoore.tymoore_cardiobook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    ArrayList<Measurement> measurements = new ArrayList<>();
+    private ArrayList<Measurement> measurements = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addMeasurementOnClick(View view){
-        goToAddMeasurementActivity();
-    }
-
-    private void goToAddMeasurementActivity(){
-        Intent intent = new Intent(this, AddMeasurement.class);
-        startActivity(intent);
+        goToAddEditMeasurementActivity(this, AddOrEditMeasurement.ADD, null);
     }
 
     private void getMeasurements(){
@@ -54,9 +50,19 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.measurement_recycler_view);
 
-        MeasurementRecylcerAdapter adapter = new MeasurementRecylcerAdapter(this, measurements);
+        MeasurementRecyclerAdapter adapter = new MeasurementRecyclerAdapter(this, measurements);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public static void goToAddEditMeasurementActivity(Context context, int mode, Measurement measurement){
+        Intent intent = new Intent(context, AddOrEditMeasurement.class);
+        intent.putExtra(AddOrEditMeasurement.MODELABEL, mode);
+        if (mode == AddOrEditMeasurement.EDIT){
+            Gson gson = new Gson();
+            intent.putExtra(AddOrEditMeasurement.MEASUREMENTLABEL, gson.toJson(measurement));
+        }
+        context.startActivity(intent);
     }
 
 }

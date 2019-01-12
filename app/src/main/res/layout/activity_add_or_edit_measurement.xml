@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMeasurement">
+    tools:context=".AddOrEditMeasurement">
     <ScrollView
         android:id="@+id/add_measurement_scroll_view"
         android:layout_width="match_parent"
@@ -124,7 +124,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/delete_button"
         android:onClick="submitButtonOnClick"/>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_text"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="deleteButtonOnClick"
+        android:background="@color/red"/>
 
 </android.support.constraint.ConstraintLayout>

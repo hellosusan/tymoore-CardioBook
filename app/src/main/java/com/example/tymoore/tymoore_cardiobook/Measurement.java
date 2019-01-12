@@ -31,8 +31,16 @@ public class Measurement {
                 ", Comment: " + comment;
     }
 
+    public UUID getID() {
+        return ID;
+    }
+
     public String getDateMeasured() {
         return dateMeasured;
+    }
+
+    public String getTimeMeasured() {
+        return timeMeasured;
     }
 
     public Integer getSystolicPressure() {
@@ -47,7 +55,31 @@ public class Measurement {
         return heartRate;
     }
 
-    public UUID getID() {
-        return ID;
+    public String getComment() {
+        return comment;
+    }
+
+    public void setDateMeasured(String dateMeasured) {
+        this.dateMeasured = dateMeasured;
+    }
+
+    public void setTimeMeasured(String timeMeasured) {
+        this.timeMeasured = timeMeasured;
+    }
+
+    public void setSystolicPressure(Integer systolicPressure) {
+        this.systolicPressure = systolicPressure;
+    }
+
+    public void setDiastolicPressure(Integer diastolicPressure) {
+        this.diastolicPressure = diastolicPressure;
+    }
+
+    public void setHeartRate(Integer heartRate) {
+        this.heartRate = heartRate;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

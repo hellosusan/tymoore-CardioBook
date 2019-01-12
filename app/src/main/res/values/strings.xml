@@ -23,7 +23,8 @@
     <string name="invalid_comment">Please reduce the length of your comment</string>
 
     <string name="submit_text">Submit</string>
-
+    <string name="edit_submit_text">Save Changes</string>
+    <string name="delete_text">Delete Measurement</string>
 
     <string name="submission_text">Measurement Successfully Added!</string>
 

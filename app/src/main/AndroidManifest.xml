@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddMeasurement"
+        <activity android:name=".AddOrEditMeasurement"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"></activity>
     </application>
