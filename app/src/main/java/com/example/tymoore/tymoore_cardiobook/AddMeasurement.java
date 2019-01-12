@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -92,9 +94,13 @@ public class AddMeasurement extends AppCompatActivity {
 
     private void storeMeasurement(String date, String time, String systolic, String diastolic,
                                   String heartRate, String comment){
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        databaseHandler.MeasurementsInsertRow(date, time, Integer.valueOf(systolic),
+        Measurement measurement = new Measurement(date, time, Integer.valueOf(systolic),
                 Integer.valueOf(diastolic), Integer.valueOf(heartRate), comment);
+
+        DataStorageManager dataStorageManager = new DataStorageManager(this,
+                getString(R.string.measurements_file_name));
+
+        dataStorageManager.insertMeasurement(measurement);
     }
 
     public void submitButtonOnClick(View view){

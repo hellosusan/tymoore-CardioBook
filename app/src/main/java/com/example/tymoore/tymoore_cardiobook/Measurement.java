@@ -1,7 +1,9 @@
 package com.example.tymoore.tymoore_cardiobook;
 
+import java.util.UUID;
+
 public class Measurement {
-    private Integer measurementID;
+    private UUID ID;
     private String dateMeasured;
     private String timeMeasured;
     private Integer systolicPressure;
@@ -10,19 +12,20 @@ public class Measurement {
     private String comment;
 
 
-    public Measurement(Integer measurementID, String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
-        this.measurementID = measurementID;
+    public Measurement(String dateMeasured, String timeMeasured, Integer systolicPressure, Integer diastolicPressure, Integer heartRate, String comment) {
         this.dateMeasured = dateMeasured;
         this.timeMeasured = timeMeasured;
         this.systolicPressure = systolicPressure;
         this.diastolicPressure = diastolicPressure;
         this.heartRate = heartRate;
         this.comment = comment;
+
+        this.ID = UUID.randomUUID();
     }
 
     @Override
     public String toString() {
-        return "MeasurementID : " + measurementID + ", DateMeasured: " + dateMeasured +
+        return "ID: " + ID + ", DateMeasured: " + dateMeasured +
                 ", TimeMeasured: " + timeMeasured + ", SystolicPressure: " + systolicPressure +
                 ", DiastolicPressure: " + diastolicPressure + ", HeartRate: " + heartRate +
                 ", Comment: " + comment;
@@ -44,7 +47,7 @@ public class Measurement {
         return heartRate;
     }
 
-    public Integer getMeasurementID() {
-        return measurementID;
+    public UUID getID() {
+        return ID;
     }
 }

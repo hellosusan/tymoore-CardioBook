@@ -28,4 +28,5 @@
     <string name="submission_text">Measurement Successfully Added!</string>
 
     <string name="testGeneralLog">testGeneral</string>
+    <string name="measurements_file_name">measurements_file.txt</string>
 </resources>

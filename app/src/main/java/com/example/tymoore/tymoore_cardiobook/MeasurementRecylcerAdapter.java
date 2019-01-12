@@ -57,13 +57,14 @@ public class MeasurementRecylcerAdapter extends RecyclerView.Adapter<Measurement
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseHandler databaseHandler = new DatabaseHandler(context);
-                databaseHandler.MeasurementsRemoveRow(measurements.get(position).getMeasurementID());
-
-                Toast.makeText(context, "Removed Measurement!", Toast.LENGTH_SHORT).show();
+                DataStorageManager dataStorageManager = new DataStorageManager(context,
+                        context.getString(R.string.measurements_file_name));
+                dataStorageManager.removeMeasurement(measurements.get(position));
 
                 measurements.remove(position);
                 notifyDataSetChanged();
+
+                Toast.makeText(context, "Removed Measurement!", Toast.LENGTH_SHORT).show();
             }
         });
 

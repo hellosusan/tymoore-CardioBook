@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getMeasurements(){
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        measurements = databaseHandler.MeasurementsGetRows();
+        DataStorageManager dataStorageManager = new DataStorageManager(this,
+                getString(R.string.measurements_file_name));
+
+        measurements = dataStorageManager.getMeasurements();
     }
 
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.measurement_recycler_view);
-
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
         MeasurementRecylcerAdapter adapter = new MeasurementRecylcerAdapter(this, measurements);
         recyclerView.setAdapter(adapter);
