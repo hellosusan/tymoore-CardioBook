@@ -1,0 +1,11 @@
+code/tymoore-CardioBook/*.iml
+code/tymoore-CardioBook/.gradle
+code/tymoore-CardioBook/local.properties
+code/tymoore-CardioBook/.idea/libraries
+code/tymoore-CardioBook/.idea/modules.xml
+code/tymoore-CardioBook/.idea/workspace.xml
+code/tymoore-CardioBook/.DS_Store
+code/tymoore-CardioBook/build
+code/tymoore-CardioBook/captures
+code/tymoore-CardioBook/.externalNativeBuild
+code/tymoore-CardioBook/.idea/caches/build_file_checksums.ser
