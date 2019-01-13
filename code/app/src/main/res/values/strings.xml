@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">tymoore-CardioBook</string>
+    <string name="empty_measurement_list">There are no measurements. \nPlease add one using the button below.</string>
+    <string name="date_measured_title">Date:</string>
+    <string name="date_measured_button">Select a date:</string>
+    <string name="time_measured_title">Time:</string>
+    <string name="time_measured_button">Select a time:</string>
+    <string name="systolic_measured">Systolic Pressure in mm Hg:</string>
+    <string name="diastolic_measured">Diastolic Pressure in mm Hg:</string>
+    <string name="heart_rate_measured">Heart Rate in Beats Per Minute:</string>
+    <string name="comment_title">Comment (up to 20 characters):</string>
+
+    <string name="systolic_hint">Enter Systolic Pressure Here:</string>
+    <string name="diastolic_hint">Enter Diastolic Pressure Here:</string>
+    <string name="heart_rate_hint">Enter Heart Rate Here:</string>
+    <string name="comment_hint">Enter Comment Here:</string>
+
+    <string name="invalid_date">Please enter a valid date</string>
+    <string name="invalid_time">Please enter a valid time</string>
+    <string name="invalid_systolic">Please enter a valid Systolic value</string>
+    <string name="invalid_diastolic">Please enter a valid Diastolic value</string>
+    <string name="invalid_heart_rate">Please enter a valid Heart Rate value</string>
+    <string name="invalid_comment">Please reduce the length of your comment</string>
+
+    <string name="submit_text">Submit</string>
+    <string name="edit_submit_text">Save Changes</string>
+    <string name="delete_text">Delete Measurement</string>
+
+    <string name="submission_text">Measurement Successfully Added!</string>
+    <string name="save_submission_text">Measurement Successfully Updated!</string>
+    <string name="delete_submission_text">Measurement Successfully Removed!</string>
+
+    <string name="testGeneralLog">testGeneral</string>
+    <string name="measurements_file_name">measurements_file.txt</string>
+</resources>
