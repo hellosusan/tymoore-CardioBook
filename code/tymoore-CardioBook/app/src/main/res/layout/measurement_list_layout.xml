@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/measurement_list_parent_view">
-
     <TextView
         android:id="@+id/list_systolic"
         android:layout_width="wrap_content"

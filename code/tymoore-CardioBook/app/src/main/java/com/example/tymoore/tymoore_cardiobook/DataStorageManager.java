@@ -14,11 +14,14 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+// This class is used to store all of the data needed for the app.
+// All data is stored in a text file as a json string using the Gson class.
 public class DataStorageManager {
     private Context context;
     private File file;
     private Gson gson;
 
+    // class constructor, gets the current context and filename
     public DataStorageManager(Context context, String fileName) {
         this.context = context;
         this.file = new File(context.getFilesDir(), fileName);
@@ -26,13 +29,16 @@ public class DataStorageManager {
 
     }
 
-
+    // insert a measurement to the database, this is done by first loading in the data,
+    // then adding a measurement, then writing back the data.
     public void insertMeasurement(Measurement measurement){
         ArrayList<Measurement> measurements = getMeasurements();
         measurements.add(measurement);
         writeMeasurementsToFile(measurements);
     }
 
+    // update a measurement to the database, this is done by first loading in the data, then
+    // updating an element, and then writing back the data.
     public void updateMeasurement(Measurement measurement){
         ArrayList<Measurement> measurements = getMeasurements();
         for (int i=0; i<measurements.size(); i++){
@@ -44,6 +50,8 @@ public class DataStorageManager {
         writeMeasurementsToFile(measurements);
     }
 
+    // remove a measurement from the database, this is done by first loading in the data, then
+    // removing an element, and then writing back the data.
     public void removeMeasurement(Measurement measurement){
         ArrayList<Measurement> measurements = getMeasurements();
 
@@ -64,6 +72,8 @@ public class DataStorageManager {
         writeMeasurementsToFile(measurements);
     }
 
+    // Write a list of measurements to the database, first convert the measurements to a json
+    // string and then write that json string to the database.
     private void writeMeasurementsToFile(ArrayList<Measurement> measurements){
         String data = gson.toJson(measurements);
 
@@ -77,6 +87,9 @@ public class DataStorageManager {
         }
     }
 
+    // get the measurements from the filesystem. Read the file with the provided file name
+    // convert that data back to an object using the Gson library. If the file either does not
+    // exist or is empty return an empty array list.
     public ArrayList<Measurement> getMeasurements(){
         int fileLength = (int) file.length();
 

@@ -5,6 +5,7 @@
     <color name="colorAccent">#000000</color>
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
+    <color name="white">#FFFFFF</color>
     <color name="addMeasurementBackground">#52f068</color>
     <color name="addMeasurementForeground">#4b4848</color>
 </resources>
