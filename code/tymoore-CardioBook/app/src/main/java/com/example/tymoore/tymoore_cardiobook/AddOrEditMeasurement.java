@@ -19,7 +19,9 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 
 // The add or edit measurement activity. In this activity a user can add, edit, or delete
-// a measurement.
+// a measurement. It guides the user through the experience through making data entry as easy as
+// possible for them and alerts them if they did not fill in a field correctly.
+// Once completed the results are stored into the database.
 public class AddOrEditMeasurement extends AppCompatActivity {
 
     // Constant strings/values used for selecting the mode and intent keys

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 // This class handles the RecyclerView which displays the list of measurements on the main activity.
 // This class is responsible for the binding of the data to visual elements. It also starts the
-// transition to the edit measurement activity.
+// transition to the edit measurement activity. It also indicates abnormal measurements by
+// highlighting them as red.
 public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<MeasurementRecyclerAdapter.ViewHolder>{
 
     private Context context; // the current measurement
